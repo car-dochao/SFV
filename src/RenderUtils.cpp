@@ -4,6 +4,7 @@
 
 #include "core.hpp"
 #include "RenderUtils.hpp"
+#include "SceneManager.h"
 
 
 using namespace physx;
@@ -123,6 +124,9 @@ void renderCallback()
 	//	scene->getActors(PxActorTypeFlag::eRIGID_DYNAMIC | PxActorTypeFlag::eRIGID_STATIC, reinterpret_cast<PxActor**>(&actors[0]), nbActors);
 	//	renderActors(&actors[0], static_cast<PxU32>(actors.size()), true, Vector4(1.0f, 0.0f, 0.0f, 1.0f));
 	//}
+
+	if (Scene* scene = SceneManager::instance().getCurrentScene()) 
+		scene->render(); // llamamos al render de la escena si existe (lo necesitamos para ParticleSystem)
 
 	finishRender();
 }

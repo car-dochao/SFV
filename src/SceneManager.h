@@ -29,6 +29,9 @@ public:
     // actual mientras se itera sobre ella.
     void changeScene(const std::string& name);
 
+    // para destruir y liberar la escena antes que physx (por tema memleaks, TODO: refactor SceneManager?)
+    void release();
+
     // Actualiza la escena actual (y aplica cambios pendientes antes de ello).
     // dt es el tiempo en segundos desde la última actualización.
     void update(double dt);

@@ -18,10 +18,9 @@ void Scene0::init() {
 void Scene0::update(double dt) {
 }
 
-void Scene0::cleanup() {
+Scene0::~Scene0() {
     for (RenderItem* item : m_renderItems)
         if (item) {
             item->release(); // Deregistra y destruye el item
-            item = nullptr;
         }
 }

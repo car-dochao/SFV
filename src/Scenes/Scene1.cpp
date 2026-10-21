@@ -15,8 +15,8 @@ void Scene1::init() {
     //m_particles.push_back(new Particle({0, 0, 0}, {2, 0, 0})); // velocidad 2m/s?
 
     // Esfera que sirve como diana
-    physx::PxTransform m_transform = physx::PxTransform(physx::PxVec3(0.0f, 10.0f, 0.0f));
-    m_renderItems.push_back(new RenderItem(CreateShape(physx::PxSphereGeometry(1.0f)), &m_transform, Vector4(1.0f, 0.1f, 0.1f, 1.0f)));
+    // physx::PxTransform m_transform = physx::PxTransform(physx::PxVec3(0.0f, 10.0f, 0.0f));
+    // m_renderItems.push_back(new RenderItem(CreateShape(physx::PxSphereGeometry(1.0f)), &m_transform, Vector4(1.0f, 0.1f, 0.1f, 1.0f)));
 }
 
 void Scene1::update(double dt) {
@@ -24,18 +24,15 @@ void Scene1::update(double dt) {
         if (particle) particle->update(dt);
 }
 
-void Scene1::cleanup() {
+Scene1::~Scene1() {
     for (RenderItem* item : m_renderItems)
         if (item) {
             item->release(); // Deregistra y destruye el item
-            item = nullptr;
         }
 
     for (Particle* particle : m_particles)
         if (particle) delete particle;
 
-    m_renderItems.clear();
-    m_particles.clear();
 }
 
 void Scene1::keyPress(unsigned char key, const physx::PxTransform& cameraTransform) {

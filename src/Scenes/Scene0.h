@@ -11,8 +11,8 @@ private:
 
 public:
     explicit Scene0(std::string name);
+    ~Scene0() override;
 
     void init() override;
     void update(double dt) override;
-    void cleanup() override;
 };

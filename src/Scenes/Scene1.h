@@ -22,9 +22,9 @@ private:
 
 public:
     explicit Scene1(std::string name);
+    ~Scene1() override;
 
     void init() override;
     void update(double dt) override;
-    void cleanup() override;
     void keyPress(unsigned char key, const physx::PxTransform& cameraTransform) override;
 };

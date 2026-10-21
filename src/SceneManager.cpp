@@ -12,14 +12,14 @@ void SceneManager::changeScene(const std::string& name) {
     m_hasPendingChange = true;
 }
 
-// Realiza la transición a la escena pendiente: limpia la escena actual,
-// crea la nueva usando la fábrica y la inicializa.
+void SceneManager::release() {
+    m_currentScene.reset();
+    m_hasPendingChange = false;
+    m_pendingSceneName.clear();
+}
+
 void SceneManager::applyPendingSceneChange() {
     if (!m_hasPendingChange) return;
-
-    if (m_currentScene) {
-        m_currentScene->cleanup();
-    }
 
     m_currentScene = m_factories[m_pendingSceneName]();
     if (m_currentScene) {
@@ -51,6 +51,9 @@ void SceneManager::keyPress(unsigned char key, const physx::PxTransform& cameraT
         return; // Consumimos el evento para que no interfiera con la escena
     case '1':
         changeScene("Scene1");
+        return;
+    case '2':
+        changeScene("Scene2");
         return;
     }
 

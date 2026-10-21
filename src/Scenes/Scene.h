@@ -16,12 +16,13 @@ public:
     // Inicializa recursos de la escena (físicos, gráficos, datos, ...).
     virtual void init() = 0;
 
-    // Libera los recursos asignados en init().
-    virtual void cleanup() = 0;
-
     // Actualiza la lógica de la escena.
     // dt: tiempo en segundos transcurrido desde la última actualización.
     virtual void update(double dt) = 0;
+
+    // para propagar a sistemas como ParticleSystem TODO: plantear otras formas de hacerlo evitando render en scenes virtual
+    // (el orden de update-> render importa, en caso de hacer un render en el propio update las particulas no se ven)
+    virtual void render() const {}
 
     // Manejo de pulsación de tecla.
     // Se recibe la tecla pulsada y la transformada de la cámara para

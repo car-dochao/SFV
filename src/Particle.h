@@ -24,7 +24,7 @@ public:
 	virtual ~Particle();
 
 	virtual void update(double t);
-	virtual void applyForce(float force, Vector3D direction);
+	virtual void addForce(float force, Vector3D direction);
 
 private:
 	RenderItem* item;

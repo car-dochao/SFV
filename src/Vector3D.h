@@ -27,6 +27,12 @@ public:
 	inline float getY() const { return y; }
 	inline float getZ() const { return z; }
 
+	// Devuelve si una posicion esta contenida dentro de la caja sobre la que se aplica (un tamaño Vector3D)
+	inline bool contains(const Vector3D& point) const {
+		return std::abs(point.x) <= x / 2 && std::abs(point.y) <= y / 2 &&
+			std::abs(point.z) <= z / 2;
+	}
+
 	// Magnitud de un Vector3D
 	inline float magnitude() const { return std::sqrt(x * x + y * y + z * z); }
 

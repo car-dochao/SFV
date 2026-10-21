@@ -13,10 +13,9 @@ Particle::~Particle() {
 	item->release();
 }
 
-// Aplica una fuerza (en newtons) durante el siguiente paso de integración
-void Particle::applyForce(float force, Vector3D direction) {
-	// aceleración = fuerza / masa
-	acceleration += direction.normalize() * (force / mass);
+// Añade una fuerza (en newtons) al acumulador de fuerzas
+void Particle::addForce(float force, Vector3D direction) {
+	acceleration += direction.normalize() * (force / mass); // aceleración = fuerza / masa
 }
 
 
