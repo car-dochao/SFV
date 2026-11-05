@@ -14,7 +14,7 @@ Particle::~Particle() {
 }
 
 // Añade una fuerza (en newtons) al acumulador de fuerzas
-void Particle::addForce(float force, Vector3D direction) {
+void Particle::addForce(float force, Vector3D direction) { // TODO: a vector3D de force (incluye force + direction)
 	acceleration += direction.normalize() * (force / mass); // aceleración = fuerza / masa
 }
 
