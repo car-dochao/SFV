@@ -8,7 +8,7 @@ protected:
 public:
 	Projectile(Vector3D position, Vector3D direction, float real_mass,
 		Vector3D gravity, float sim_velocity, float real_velocity,
-		float damping = 1.f, IntegratorType type = IntegratorType::SemiEuler);
+		physx::PxVec4 color = physx::PxVec4(1.f, 1.f, 1.f, 1.f), IntegratorType type = IntegratorType::SemiEuler);
 
-	void update(double t) override;
+	void update(double t, const std::vector<const ForceGenerator*>& force_generators = {}) override;
 };

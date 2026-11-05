@@ -10,6 +10,7 @@
     <ClCompile Include="RenderUtils.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="callbacks.cpp" />
+    <ClCompile Include="ForceGenerator.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Scenes\Scene0.cpp">
       <Filter>Scenes</Filter>
@@ -20,6 +21,9 @@
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="ParticleSystems.cpp" />
     <ClCompile Include="Scenes\Scene2.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\Scene3.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="Scenes\Scene1.cpp" />
@@ -46,6 +50,9 @@
     <ClInclude Include="Particle.h" />
     <ClInclude Include="ParticleSystems.h" />
     <ClInclude Include="Scenes\Scene2.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\Scene3.h">
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Scenes\Scene1.h" />

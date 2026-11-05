@@ -4,8 +4,8 @@ Scene2::Scene2(std::string name) : Scene(name) {
 }
 
 Scene2::~Scene2() {
-    for (ParticleSystem* p : particle_systems)
-        delete p;
+    for (ParticleSystem* s : particle_systems)
+        delete s;
 }
 
 void Scene2::init() {
@@ -32,11 +32,11 @@ void Scene2::init() {
 }
 
 void Scene2::update(double dt) {
-    for (ParticleSystem* p : particle_systems)
-        p->update(float(dt));
+    for (ParticleSystem* s : particle_systems)
+        s->update(float(dt));
 }
 
 void Scene2::render() const {
-    for (ParticleSystem* p : particle_systems)
-        p->render();
+    for (ParticleSystem* s : particle_systems)
+        s->render();
 }

@@ -2,8 +2,8 @@
 
 Projectile::Projectile(Vector3D position, Vector3D direction, float real_mass,
 	Vector3D gravity, float sim_velocity, float real_velocity,
-	float damping, IntegratorType type) : 
-    Particle(position, direction, real_mass, damping, type) {
+	physx::PxVec4 color, IntegratorType type) : 
+    Particle(position, direction, real_mass, 0.f, color, type) {
 	// aplicamos la dirección normalizada a la velocidad (simulada)
 	velocity = direction.normalize() * sim_velocity;
 
@@ -12,9 +12,9 @@ Projectile::Projectile(Vector3D position, Vector3D direction, float real_mass,
 	this->gravity = gravity * (sim_velocity * sim_velocity) / (real_velocity * real_velocity);
 }
 
-void Projectile::update(double t) {
+void Projectile::update(double t, const std::vector<const ForceGenerator*>& force_generators) {
     
 	acceleration += gravity;
 	
-	Particle::update(t); // integra la partícula
+	Particle::update(t, force_generators); // integra la partícula
 }

@@ -1,35 +1,44 @@
 #pragma once
 
 #include "Vector3D.h"
-#include "RenderUtils.hpp"
+#include <vector>
+
+class ForceGenerator;
 
 class Particle {
 
 protected:
 
-	float mass;
-	float damping;
+	float mass = 1.f;
+	float damping = 0.98f;
 
+	Vector3D position;
 	Vector3D velocity;
 	Vector3D acceleration;
-
-	physx::PxTransform transform; // position & quaternion
+	float life = 0.f;
+	physx::PxVec4 color{1.f, 1.f, 1.f, 1.f};
 
 public:
 	enum class IntegratorType { Euler, SemiEuler, Verlet };
 
-	Particle(Vector3D position, Vector3D velocity, float mass = 1.f, float damping = 0.98f,
-		IntegratorType type = IntegratorType::Euler);
+	Particle() = default;
+	Particle(Vector3D position, Vector3D velocity, float mass, float life,
+		physx::PxVec4 color = physx::PxVec4(1.f, 1.f, 1.f, 1.f),
+		IntegratorType type = IntegratorType::SemiEuler, float damping = 0.98f);
 
-	virtual ~Particle();
+	virtual ~Particle() = default;
 
-	virtual void update(double t);
-	virtual void addForce(float force, Vector3D direction);
+	virtual void update(double t, const std::vector<const ForceGenerator*>& force_generators = {});
+	void addForce(Vector3D force);
+
+	const Vector3D& getPosition() const { return position; }
+	const Vector3D& getVelocity() const { return velocity; }
+	float getMass() const { return mass; }
+	float getLife() const { return life; }
+	const physx::PxVec4& getColor() const { return color; }
 
 private:
-	RenderItem* item;
-
-	IntegratorType intg_type; // por defecto Euler (ctra)
+	IntegratorType intg_type = IntegratorType::SemiEuler; // por defecto SemiEuler (ctra)
 
 	// métodos para cada tipo de integrador
 	void intg_euler(double t);
